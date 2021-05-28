@@ -226,8 +226,11 @@ class _HomeState extends State<Home> {
                                     ),
                                     alignment: Alignment.center,
                                     child: IconButton(
-                                      icon: Icon(FontAwesomeIcons.solidHeart,color: Colors.white,),
-                                      onPressed: (){},
+                                      icon: Icon(
+                                        FontAwesomeIcons.solidHeart,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () {},
                                     )),
                               ],
                             )
@@ -255,6 +258,107 @@ class _HomeState extends State<Home> {
             ),
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.white,
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(20.0, 20.0, 10.0, 30.0),
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://cdn4.iconfinder.com/data/icons/avatar-circle-1-1/72/91-512.png"), //NetworkImage
+                  radius: 30,
+                ),
+                title: Text(
+                  "My Profile",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                trailing: Icon(Icons.arrow_right_alt, color: kgreen),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.home, color: kgreen),
+                title: Text("Home"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.payment, color: kgreen),
+                title: Text("Payments"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.touch_app, color: kgreen),
+                title: Text("Bookings"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.stars, color: kgreen),
+                title: Text("Favourite"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.today, color: kgreen),
+                title: Text("Calender"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.card_giftcard, color: kgreen),
+                title: Text("Refer & Earn"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings, color: kgreen),
+                title: Text("Support"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.contacts, color: kgreen),
+                title: Text("Contact us"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.power_settings_new, color: kgreen),
+                title: Text("LogOut"),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.info, color: kgreen),
+                title: Text("About"),
+                trailing: Text(
+                  "1.0.0",
+                  style: TextStyle(color: kgreen),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
