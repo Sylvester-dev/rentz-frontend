@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rentz/screens/login_screen.dart';
 import 'package:rentz/screens/home_screen.dart';
-void main()
-{
-   runApp(MyApp());
+import 'package:rentz/screens/map_screen.dart';
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: MapScreen(),
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
     );

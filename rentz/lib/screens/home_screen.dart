@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/widgets/search_bar.dart';
 import '../constant.dart';
 import '../screens/Components/ReusableCard.dart';
 import '../screens/Components/IconContent.dart';
@@ -49,31 +50,8 @@ class _HomeState extends State<Home> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(10.0),
-            child: TextField(
-              autocorrect: true,
-              decoration: InputDecoration(
-                hintText: 'Search',
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: kgreen,
-                ),
-                hintStyle: TextStyle(color: Colors.grey),
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                  borderSide: BorderSide(color: kgreen, width: 2),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  borderSide: BorderSide(color: kgreen, width: 2),
-                ),
-              ),
-            ),
-          ),
+          SearchBar(),
+          // use grid and map the rows from our sevices data
           Row(
             children: <Widget>[
               Expanded(
@@ -226,8 +204,11 @@ class _HomeState extends State<Home> {
                                     ),
                                     alignment: Alignment.center,
                                     child: IconButton(
-                                      icon: Icon(FontAwesomeIcons.solidHeart,color: Colors.white,),
-                                      onPressed: (){},
+                                      icon: Icon(
+                                        FontAwesomeIcons.solidHeart,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () {},
                                     )),
                               ],
                             )
