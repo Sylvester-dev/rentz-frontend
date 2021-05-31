@@ -55,6 +55,7 @@ flutter:
   assets:
     - assets/icons/circle-shape.svg
     - assets/images/bus.jpg
+    - assets/icons/refer.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

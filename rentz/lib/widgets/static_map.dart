@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import '../utils/map_controller.dart';
+import '../demo_data/flats.dart';
 
 class StaticMap extends StatefulWidget {
   double latitude;
@@ -13,8 +14,24 @@ class StaticMap extends StatefulWidget {
 }
 
 class _StaticMapState extends State<StaticMap> {
+  Marker myLocationMarker(LatLng location) {
+    return Marker(
+      width: 120.0,
+      height: 120.0,
+      point: location,
+      builder: (ctx) => GestureDetector(
+        child: Icon(Icons.home_filled),
+        onTap: () {
+          print("henlo");
+          showThisProduct("Mylocation");
+        },
+      ),
+    );
+  }
+
   void getLocation(LatLng location) {
     setState(() {
+      // createMarkers().add(myLocationMarker(location));
       widget.latitude = location.latitude;
       widget.longitude = location.longitude;
     });
@@ -23,8 +40,24 @@ class _StaticMapState extends State<StaticMap> {
     });
   }
 
-  void showThisProduct(ctx) {
-    print(ctx);
+  void showThisProduct(id) {
+    print(id);
+  }
+
+  List<Marker> createMarkers() {
+    return DUMMY_FLATS.map((flat) {
+      return Marker(
+        width: 120.0,
+        height: 120.0,
+        point: LatLng(flat.lat, flat.long),
+        builder: (ctx) => GestureDetector(
+          child: Icon(Icons.location_on),
+          onTap: () {
+            showThisProduct(flat.id);
+          },
+        ),
+      );
+    }).toList();
   }
 
   @override
@@ -38,7 +71,7 @@ class _StaticMapState extends State<StaticMap> {
               }
             : (_) {},
         center: LatLng(widget.latitude, widget.longitude),
-        zoom: 16.0,
+        zoom: 18.0,
       ),
       layers: [
         TileLayerOptions(
@@ -46,19 +79,8 @@ class _StaticMapState extends State<StaticMap> {
             subdomains: ['a', 'b', 'c']),
         MarkerLayerOptions(
           markers: [
-            Marker(
-              width: 120.0,
-              height: 120.0,
-              point: LatLng(widget.latitude, widget.longitude),
-              builder: (ctx) => Container(
-                child: GestureDetector(
-                  child: Icon(Icons.location_on),
-                  onTap: () {
-                    showThisProduct();
-                  },
-                ),
-              ),
-            ),
+            ...createMarkers(),
+            myLocationMarker(LatLng(widget.latitude, widget.longitude)),
           ],
         ),
       ],

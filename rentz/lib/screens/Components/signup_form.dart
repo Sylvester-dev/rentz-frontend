@@ -137,8 +137,9 @@ class _SignupFormState extends State<SignupForm> {
               color: kprimarytheme,
               borderRadius: BorderRadius.all(Radius.circular(100)),
             ),
-            child: ElevatedButton(
+            child: FlatButton(
               onPressed: () => {_savingsign()},
+              color: Theme.of(context).primaryColor,
               child: Text(
                 'Sign Up',
                 style: TextStyle(color: Colors.white, fontSize: 18),

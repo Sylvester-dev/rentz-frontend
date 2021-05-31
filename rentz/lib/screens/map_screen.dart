@@ -14,7 +14,7 @@ class MapScreen extends StatefulWidget {
 class _MapScreenState extends State<MapScreen> {
   // double lat = 25.4916248, long = 80.34373889999999;
   double lat = 23.4916248, long = 80.34373889999999;
-  bool isSelect = true;
+  bool isSelect = false;
 
   Future<void> _getCurrentLocation(select) async {
     try {
@@ -65,7 +65,8 @@ class _MapScreenState extends State<MapScreen> {
             child: GestureDetector(
               child: Icon(
                 Icons.gps_fixed,
-                color: Colors.black,
+                color: Colors.black87,
+                size: 30,
               ),
               onTap: () {
                 _getCurrentLocation(false);
@@ -79,18 +80,20 @@ class _MapScreenState extends State<MapScreen> {
         // width: double.infinity,
         child: Stack(
           children: [
-            LocationInput(lat, long, isSelect),
+            SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
+              child: LocationInput(lat, long, isSelect),
+            ),
             Container(
-              margin: EdgeInsets.only(top: AppBar().preferredSize.height + 10),
+              margin: EdgeInsets.only(top: AppBar().preferredSize.height + 15),
               child: SearchBar(),
             ),
             Positioned(
-              bottom: 0,
+              bottom: 10,
               width: MediaQuery.of(context).size.width,
               height: 170,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 itemCount: 3,
                 itemBuilder: (BuildContext context, int index) {
                   return ProductTile();

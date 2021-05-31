@@ -38,7 +38,7 @@ class _PassLoginState extends State<PassLogin> {
                     if (value.isEmpty)
                       return 'Provide an input';
                     else if (value.length < 8)
-                      return 'Password must have atleast 8 character';
+                      return 'Atleast 8 characters required';
                     return null;
                   },
                   onSaved: (value) => setState(() => {User.password = value}),

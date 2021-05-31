@@ -48,11 +48,12 @@ class _LoginFormState extends State<LoginForm> {
             height: 47,
             width: 274,
             decoration: BoxDecoration(
-              color: kprimarytheme,
+              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.all(Radius.circular(100)),
             ),
-            child: ElevatedButton(
+            child: FlatButton(
               onPressed: () => _formsave(),
+              color: Theme.of(context).primaryColor,
               child: Text(
                 'Log In',
                 style: TextStyle(color: Colors.white, fontSize: 18),

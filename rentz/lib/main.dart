@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rentz/screens/login_screen.dart';
 import 'package:rentz/screens/home_screen.dart';
-import 'package:rentz/screens/map_screen.dart';
+import './screens/map_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MapScreen(),
-      theme: ThemeData(),
+      theme: ThemeData(
+        primaryColor: Color(0xff50C2C9),
+        accentColor: Color(0xffEEEEEE),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
