@@ -12,7 +12,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  // double lat = 25.4916248, long = 80.34373889999999;
+
   double lat = 23.4916248, long = 80.34373889999999;
   bool isSelect = false;
 
