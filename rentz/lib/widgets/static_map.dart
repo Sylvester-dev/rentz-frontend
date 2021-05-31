@@ -31,7 +31,6 @@ class _StaticMapState extends State<StaticMap> {
 
   void getLocation(LatLng location) {
     setState(() {
-      // createMarkers().add(myLocationMarker(location));
       widget.latitude = location.latitude;
       widget.longitude = location.longitude;
     });
