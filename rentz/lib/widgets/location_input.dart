@@ -21,11 +21,6 @@ class LocationInput extends StatelessWidget {
               color: Colors.grey,
             )),
             child: StaticMap(latitude, longitude, isSelect)
-            // Image.network(
-            //     _previewImageURL,
-            //     fit: BoxFit.cover,
-            //     width: double.infinity,
-            //   ),
             ),
       ],
     );

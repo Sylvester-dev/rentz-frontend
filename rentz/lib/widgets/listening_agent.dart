@@ -34,7 +34,6 @@ class ListeningAgent extends StatelessWidget {
                       height: 40,
                       width: 40,
                     ),
-                    // backgroundColor: Colors.transparent,
                   ),
                 ),
                 Column(

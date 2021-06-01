@@ -5,6 +5,7 @@ import 'package:rentz/widgets/search_bar.dart';
 import 'package:rentz/utils/map_controller.dart';
 import '../widgets/location_input.dart';
 import 'package:latlong/latlong.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -12,9 +13,12 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-
   double lat = 23.4916248, long = 80.34373889999999;
   bool isSelect = false;
+
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
 
   Future<void> _getCurrentLocation(select) async {
     try {
@@ -40,9 +44,25 @@ class _MapScreenState extends State<MapScreen> {
       return;
     }
   }
+  var visibleIndex = 0;
+
+  void doSomethingWith(List<ItemPosition> val) {
+    
+    for (var item in val) {
+      if (item.itemLeadingEdge < .35 && item.itemLeadingEdge > 0)
+      {
+        visibleIndex = item.index;
+      } 
+    }
+
+    print(visibleIndex);
+  }
 
   @override
   Widget build(BuildContext context) {
+    itemPositionsListener.itemPositions.addListener(() {
+      doSomethingWith(itemPositionsListener.itemPositions.value.toList());
+    });
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Color(0xffEEEEEE),
@@ -92,9 +112,11 @@ class _MapScreenState extends State<MapScreen> {
               bottom: 10,
               width: MediaQuery.of(context).size.width,
               height: 170,
-              child: ListView.builder(
+              child: ScrollablePositionedList.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 3,
+                itemScrollController: itemScrollController,
+                itemPositionsListener: itemPositionsListener,
                 itemBuilder: (BuildContext context, int index) {
                   return ProductTile();
                 },

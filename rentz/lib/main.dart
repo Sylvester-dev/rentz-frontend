@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/screens/booking_screen.dart';
 import 'package:rentz/screens/login_screen.dart';
 import 'package:rentz/screens/home_screen.dart';
+import 'package:rentz/screens/map_screen.dart';
+import 'package:rentz/screens/notification.dart';
+import 'package:rentz/screens/refer_earn.dart';
+import 'package:rentz/widgets/product_detail.dart';
 import './screens/product_details_screen.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ProductDetailsScreen(),
+      // home: ProductDetailsScreen(),
+      home: MapScreen(),
       theme: ThemeData(
         primaryColor: Color(0xff50C2C9),
         accentColor: Color(0xffEEEEEE),
