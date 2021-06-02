@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Specifications extends StatelessWidget {
+  final facilities;
+  Specifications(this.facilities);
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,58 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import 'package:location/location.dart';
 import '../utils/map_controller.dart';
-import '../demo_data/flats.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class StaticMap extends StatefulWidget {
-  double latitude;
-  double longitude;
-  bool isSelect;
-  StaticMap(this.latitude, this.longitude, this.isSelect);
+  final List<dynamic> flats;
+  final itemScrollController;
+  StaticMap(this.flats, this.itemScrollController);
   @override
   _StaticMapState createState() => _StaticMapState();
 }
 
 class _StaticMapState extends State<StaticMap> {
-  Marker myLocationMarker(LatLng location) {
-    return Marker(
-      width: 120.0,
-      height: 120.0,
-      point: location,
-      builder: (ctx) => GestureDetector(
-        child: Icon(Icons.home_filled),
-        onTap: () {
-          print("henlo");
-          showThisProduct("Mylocation");
-        },
-      ),
-    );
+  Location location;
+  LatLng currentLocation;
+  var mapOptions = MapOptions(
+    center: LatLng(23, 80),
+    zoom: 18.0,
+  );
+  Marker homeMarker;
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation().then((value) {
+      location = new Location();
+      location.onLocationChanged.listen((LocationData cLoc) {
+        setState(() {
+          currentLocation = LatLng(cLoc.latitude, cLoc.longitude);
+          //   print("updated");
+        });
+      });
+    });
   }
 
-  void getLocation(LatLng location) {
-    setState(() {
-      widget.latitude = location.latitude;
-      widget.longitude = location.longitude;
-    });
-    MyMapController.mapController.onReady.then((result) {
-      MyMapController.mapController.move(location, 18.0);
-    });
+  Future<void> _getCurrentLocation() async {
+    try {
+      final loc = await Location().getLocation();
+      currentLocation = LatLng(loc.latitude, loc.longitude);
+      MyMapController.mapController.onReady.then((result) {
+        MyMapController.mapController.move(currentLocation, 18.0);
+      });
+    } catch (e) {
+      print(e);
+      return;
+    }
   }
 
   void showThisProduct(id) {
-    print(id);
+    widget.itemScrollController.scrollTo(
+        index: id,
+        duration: Duration(seconds: 1),
+        curve: Curves.easeInOutCubic);
   }
 
   List<Marker> createMarkers() {
-    return DUMMY_FLATS.map((flat) {
+    return widget.flats.map((flat) {
       return Marker(
-        width: 120.0,
-        height: 120.0,
+        width: 80.0,
+        height: 80.0,
         point: LatLng(flat.lat, flat.long),
         builder: (ctx) => GestureDetector(
-          child: Icon(Icons.location_on),
+          child: Icon(
+            Icons.location_on,
+            size: 40,
+            color: Colors.blue.shade800,
+          ),
           onTap: () {
-            showThisProduct(flat.id);
+            showThisProduct(widget.flats.indexOf(flat));
           },
         ),
       );
@@ -61,17 +77,16 @@ class _StaticMapState extends State<StaticMap> {
 
   @override
   Widget build(BuildContext context) {
+    if (currentLocation != null) {
+      mapOptions = MapOptions(
+        center: currentLocation,
+        zoom: 18.0,
+      );
+    }
+
     return FlutterMap(
       mapController: MyMapController.mapController,
-      options: MapOptions(
-        onTap: widget.isSelect == true
-            ? (location) {
-                getLocation(location);
-              }
-            : (_) {},
-        center: LatLng(widget.latitude, widget.longitude),
-        zoom: 18.0,
-      ),
+      options: mapOptions,
       layers: [
         TileLayerOptions(
             urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -79,7 +94,21 @@ class _StaticMapState extends State<StaticMap> {
         MarkerLayerOptions(
           markers: [
             ...createMarkers(),
-            myLocationMarker(LatLng(widget.latitude, widget.longitude)),
+            Marker(
+              width: 80.0,
+              height: 80.0,
+              point: currentLocation,
+              builder: (ctx) => GestureDetector(
+                child: FaIcon(
+                  FontAwesomeIcons.solidDotCircle,
+                  size: 30,
+                  semanticLabel: "fas",
+                  color: Colors.blue.shade800,
+                ),
+                onTap: () {},
+              ),
+            ),
+            // homeMarker,
           ],
         ),
       ],

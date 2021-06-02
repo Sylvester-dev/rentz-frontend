@@ -9,6 +9,8 @@ import 'package:rentz/widgets/product_detail.dart';
 import './screens/product_details_screen.dart';
 import 'package:flutter/services.dart';
 
+import 'screens/signup_screen.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.amber, // navigation bar color
@@ -25,13 +27,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: ProductDetailsScreen(),
       home: MapScreen(),
       theme: ThemeData(
         primaryColor: Color(0xff50C2C9),
         accentColor: Color(0xffEEEEEE),
       ),
       debugShowCheckedModeBanner: false,
+      routes: {
+        // '/': (ctx) => Home(),
+        // '/profile': (ctx) => Profile(),
+        '/login': (ctx) => LoginScreen(),
+        '/signup': (ctx) => SignupScreen(),
+        // '/favorite': (ctx) => Favo(),
+        '/refer': (ctx) => ReferEarn(),
+        '/noti': (ctx) => Noti(),
+        '/bookings': (ctx) => Booking(),
+        // '/products': (ctx) => ProductDetailsScreen(),
+        '/products/flat': (ctx) => ProductDetailsScreen(),
+        '/products/mapview': (ctx) => MapScreen(),
+        // '/product/:id': (ctx) => Home(),
+        // '/add': (ctx) => Home(),
+        // '/add/:id': (ctx) => Home(),
+        // '/yourservices': (ctx) => Home(),
+      },
     );
   }
 }

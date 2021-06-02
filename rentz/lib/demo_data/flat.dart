@@ -2,6 +2,7 @@ import 'User.dart';
 
 class Flat {
   final String id;
+  final String name;
   final List<String> imageUrl;
   final List<String> videoUrl;
   final List<String> facilities;
@@ -17,6 +18,7 @@ class Flat {
 
   const Flat({
     this.id,
+    this.name,
     this.imageUrl,
     this.videoUrl,
     this.facilities,

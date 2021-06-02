@@ -8,6 +8,8 @@ import '../widgets/book.dart';
 import '../widgets/product_header.dart';
 
 class ProductDetail extends StatefulWidget {
+  final flatdetails;
+  ProductDetail(this.flatdetails);
   @override
   _ProductDetailState createState() => _ProductDetailState();
 }
@@ -35,10 +37,21 @@ class _ProductDetailState extends State<ProductDetail> {
             padding: EdgeInsets.fromLTRB(20, 50, 20, 20),
             child: Column(
               children: [
-                ProductHeader(),
-                ListeningAgent(),
-                Specifications(),
-                Book(),
+                ProductHeader(
+                  widget.flatdetails.id,
+                  widget.flatdetails.name,
+                  widget.flatdetails.location,
+                ),
+                ListeningAgent(
+                  widget.flatdetails.owner,
+                ),
+                Specifications(
+                  widget.flatdetails.facilities,
+                ),
+                Book(
+                  widget.flatdetails.id,
+                  widget.flatdetails.amount,
+                ),
               ],
             ),
           ),

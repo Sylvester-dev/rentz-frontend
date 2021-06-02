@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
 class ListeningAgent extends StatelessWidget {
+  final owner;
+  ListeningAgent(this.owner);
+
+  void callToThisNumber(number) {
+    print(number);
+  }
+
+  void openChatManager(id) {
+    print(id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +40,7 @@ class ListeningAgent extends StatelessWidget {
                   margin: EdgeInsets.only(right: 10),
                   child: ClipOval(
                     child: Image.network(
-                      "https://picsum.photos/200/300?random=1",
+                      owner.imageUrl,
                       fit: BoxFit.cover,
                       height: 40,
                       width: 40,
@@ -41,7 +52,7 @@ class ListeningAgent extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        "Ananya Tiwari",
+                        owner.name,
                         style: TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 16),
                       ),
@@ -68,7 +79,9 @@ class ListeningAgent extends StatelessWidget {
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      openChatManager(owner.id);
+                    },
                   ),
                 ),
                 Container(
@@ -79,7 +92,9 @@ class ListeningAgent extends StatelessWidget {
                       size: 30,
                       color: Theme.of(context).primaryColor,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      callToThisNumber(owner.contact);
+                    },
                   ),
                 )
               ],

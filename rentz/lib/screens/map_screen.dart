@@ -6,6 +6,7 @@ import 'package:rentz/utils/map_controller.dart';
 import '../widgets/location_input.dart';
 import 'package:latlong/latlong.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../demo_data/flats.dart';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -26,14 +27,13 @@ class _MapScreenState extends State<MapScreen> {
       // List<Geocoding.Placemark> placemarks =
       //     await Geocoding.placemarkFromCoordinates(
       //         locData.latitude, locData.longitude);
-      setState(() {
-        lat = loc.latitude;
-        long = loc.longitude;
-
-        isSelect = select;
-        // print(placemarks);
-        // print(longitude);
-      });
+      // setState(() {
+      //   // print(placemarks);
+      //   // print(longitude);
+      // });
+      lat = loc.latitude;
+      long = loc.longitude;
+      isSelect = select;
       MyMapController.mapController.onReady.then((result) {
         MyMapController.mapController
             .move(LatLng(loc.latitude, loc.longitude), 18.0);
@@ -44,18 +44,24 @@ class _MapScreenState extends State<MapScreen> {
       return;
     }
   }
+
   var visibleIndex = 0;
 
   void doSomethingWith(List<ItemPosition> val) {
-    
     for (var item in val) {
-      if (item.itemLeadingEdge < .35 && item.itemLeadingEdge > 0)
-      {
+      if (item.itemLeadingEdge < .35 && item.itemLeadingEdge > 0) {
         visibleIndex = item.index;
-      } 
+      }
     }
+    MyMapController.mapController.onReady.then((result) {
+      MyMapController.mapController.move(
+          LatLng(DUMMY_FLATS[visibleIndex].lat, DUMMY_FLATS[visibleIndex].long),
+          18.0);
+    });
+  }
 
-    print(visibleIndex);
+  void gotoDetailsPage(ctx, flat) {
+    Navigator.of(ctx).pushNamed('/products/flat', arguments: flat);
   }
 
   @override
@@ -96,13 +102,11 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
       body: Container(
-        // height: MediaQuery.of(context).size.height,
-        // width: double.infinity,
         child: Stack(
           children: [
             SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
-              child: LocationInput(lat, long, isSelect),
+              child: LocationInput(DUMMY_FLATS, itemScrollController),
             ),
             Container(
               margin: EdgeInsets.only(top: AppBar().preferredSize.height + 15),
@@ -114,11 +118,16 @@ class _MapScreenState extends State<MapScreen> {
               height: 170,
               child: ScrollablePositionedList.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
+                itemCount: DUMMY_FLATS.length,
                 itemScrollController: itemScrollController,
                 itemPositionsListener: itemPositionsListener,
                 itemBuilder: (BuildContext context, int index) {
-                  return ProductTile();
+                  return GestureDetector(
+                    onTap: () {
+                      gotoDetailsPage(context, DUMMY_FLATS[index]);
+                    },
+                    child: ProductTile(DUMMY_FLATS[index]),
+                  );
                 },
               ),
             )

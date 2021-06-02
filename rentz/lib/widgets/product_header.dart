@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rentz/screens/product_details_screen.dart';
 
 class ProductHeader extends StatefulWidget {
   bool favorite = false;
+  final id;
+  final name;
+  final address;
+  ProductHeader(this.id, this.name, this.address);
   @override
   _ProductHeaderState createState() => _ProductHeaderState();
 }
@@ -23,7 +28,7 @@ class _ProductHeaderState extends State<ProductHeader> {
         Container(
           width: double.infinity,
           child: Text(
-            "Rowan Apartment",
+            widget.name,
             style: TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.w800),
             textAlign: TextAlign.left,
@@ -40,7 +45,7 @@ class _ProductHeaderState extends State<ProductHeader> {
                 Container(
                   margin: EdgeInsets.only(top: 8),
                   child: Text(
-                    "Delhi Clock, Delhi",
+                    widget.address,
                     style: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w500),
@@ -71,7 +76,7 @@ class _ProductHeaderState extends State<ProductHeader> {
                         color: Theme.of(context).primaryColor,
                       ),
                 onTap: () {
-                  addToFavorite("id");
+                  addToFavorite(widget.id);
                 },
               ),
             )
