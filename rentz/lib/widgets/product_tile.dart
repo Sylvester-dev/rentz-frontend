@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductTile extends StatelessWidget {
+  final flat;
+  ProductTile(this.flat);
   var kgreen = const Color(0xff50C2C9);
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class ProductTile extends StatelessWidget {
         Container(
           margin: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
           height: 170.0,
-          width: MediaQuery.of(context).size.width -20,
+          width: MediaQuery.of(context).size.width - 20,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20.0),
@@ -30,7 +32,7 @@ class ProductTile extends StatelessWidget {
                         Container(
                           width: 100.0,
                           child: Text(
-                            "Rowan Apartment",
+                            flat.name,
                             style: TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.w600,
@@ -43,7 +45,7 @@ class ProductTile extends StatelessWidget {
                         Container(
                           width: 100,
                           child: Text(
-                            "Delhi Clock",
+                            flat.location,
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               color: Colors.grey,
@@ -71,7 +73,7 @@ class ProductTile extends StatelessWidget {
                     Column(
                       children: <Widget>[
                         Text(
-                          '\$30',
+                          flat.amount.toString(),
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 22.0,
@@ -121,7 +123,8 @@ class ProductTile extends StatelessWidget {
             child: Image(
               width: 110.0,
               image: NetworkImage(
-                  'https://tse3.mm.bing.net/th?id=OIP.OhOeTk2z5YyzIKyIkHsLcAHaFj&pid=Api&P=0&w=245&h=184'),
+                flat.imageUrl[0],
+              ),
               fit: BoxFit.cover,
             ),
           ),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart' as Geocoding;
 import 'package:location/location.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import './static_map.dart';
 
 class LocationInput extends StatelessWidget {
-  final double latitude, longitude;
-  final bool isSelect;
-  LocationInput(this.latitude, this.longitude, this.isSelect);
+  final flats;
+  final itemScrollController;
+  LocationInput(this.flats, this.itemScrollController);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,8 +21,7 @@ class LocationInput extends StatelessWidget {
               width: 1,
               color: Colors.grey,
             )),
-            child: StaticMap(latitude, longitude, isSelect)
-            ),
+            child: StaticMap(flats,itemScrollController)),
       ],
     );
   }

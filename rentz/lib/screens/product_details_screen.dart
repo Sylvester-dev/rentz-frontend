@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
+import 'package:rentz/demo_data/flat.dart';
 import '../widgets/corousal.dart';
 import '../widgets/product_detail.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final routeArgs = ModalRoute.of(context).settings.arguments as Flat;
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Color(0xffEEEEEE),
@@ -46,7 +48,7 @@ class ProductDetailsScreen extends StatelessWidget {
             Positioned(
               top: 0,
               child: Container(
-                height: 350,
+                height: MediaQuery.of(context).size.height - 291,
                 width: MediaQuery.of(context).size.width,
                 margin:
                     EdgeInsets.only(top: MediaQuery.of(context).padding.top),
@@ -65,7 +67,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 // color: Colors.white,
                 height: 390,
-                child: ProductDetail(),
+                child: ProductDetail(routeArgs),
               ),
             ),
           ],

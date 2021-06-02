@@ -3,8 +3,10 @@ import 'package:rentz/screens/Components/pass_login.dart';
 import 'package:rentz/screens/Components/profile.dart';
 import 'package:rentz/screens/signup_screen.dart';
 import '../../constant.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rentz/utils/urls.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'email_field.dart';
 
 class LoginForm extends StatefulWidget {
@@ -13,6 +15,21 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
+
+Future<void> _handleSignIn() async {
+  try {
+    var response = await _googleSignIn.signIn();
+    print(response);
+  } catch (error) {
+    print(error);
+  }
+}
   final _formKey = GlobalKey<FormState>();
 
   void addsignin() async {
@@ -84,7 +101,35 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
             ],
-          )
+          ),
+          Text(
+            'OR',
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: GestureDetector(
+                onTap: _handleSignIn,
+                  child: Icon(
+                    FontAwesomeIcons.googlePlusG,
+                    color: Colors.red,
+                    size: 24,
+                  ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: IconButton(
+                onPressed: () => {
+                },
+                icon: Icon(
+                  FontAwesomeIcons.facebook,
+                  color: Colors.blue,
+                  size: 24,
+                ),
+              ),
+            ),
+          ])
         ],
       ),
     );

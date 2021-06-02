@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Book extends StatelessWidget {
+  final id;
+  final amount;
+  Book(this.id, this.amount);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,14 +14,16 @@ class Book extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Rs.300/day",
+                amount.toString(),
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
                     color: Colors.black87),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  print(id);
+                },
                 child: Text("BOOK NOW"),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
