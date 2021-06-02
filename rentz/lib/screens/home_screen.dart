@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rentz/widgets/search_bar.dart';
 import '../constant.dart';
-import '../screens/Components/ReusableCard.dart';
+import '../screens/Components/ReusableCardHome.dart';
 import '../screens/Components/IconContent.dart';
 import '../screens/Components/appbar.dart';
 import '../screens/Components/drawer.dart';
@@ -32,21 +32,21 @@ class _HomeState extends State<Home> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(
+                    child: ReusableCardHome(
                       colour: Colors.white,
                       cardChild:
                           IconContent(icon: FontAwesomeIcons.car, label: 'Car'),
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
+                    child: ReusableCardHome(
                       colour: Colors.white,
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.bicycle, label: 'Bike'),
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
+                    child: ReusableCardHome(
                       colour: Colors.white,
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.school, label: 'Tent'),
@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
               Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(
+                    child: ReusableCardHome(
                       colour: Colors.white,
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.carBattery,
@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
+                    child: ReusableCardHome(
                       // onPress: () {
                       //   setState(() {
                       //   });
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
+                    child: ReusableCardHome(
                       colour: Colors.white,
                       cardChild: IconContent(
                           icon: FontAwesomeIcons.wrench, label: 'Service'),

@@ -3,6 +3,7 @@ import 'package:rentz/screens/booking_screen.dart';
 import 'package:rentz/screens/login_screen.dart';
 import 'package:rentz/screens/refer_earn.dart';
 import 'package:rentz/screens/home_screen.dart';
+import 'package:rentz/screens/serviceScreen.dart';
 import 'screens/Components/bottomNavBar.dart';
 import 'screens/search_screen.dart';
 import 'package:rentz/screens/map_screen.dart';
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
       body: TabBarView(
         children: <Widget>[
           Home(),
-          Home(),
+          Service(),
           Home(),
           Search(),
         ],
