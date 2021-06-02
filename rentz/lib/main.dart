@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: ProductDetailsScreen(),
-      home: MapScreen(),
+      home: ReferEarn(),
       theme: ThemeData(
         primaryColor: Color(0xff50C2C9),
         accentColor: Color(0xffEEEEEE),
