@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "738298958005",
+    "project_id": "primordial-will-315614",
+    "storage_bucket": "primordial-will-315614.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738298958005:android:4c5cff1f6fe5dad0db2efc",
+        "android_client_info": {
+          "package_name": "com.example.rentz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738298958005-q4roruckph5f281bhl58pn44ersfu89h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rentz",
+            "certificate_hash": "dbf360535e191601d57e51e640ffd0836596a289"
+          }
+        },
+        {
+          "client_id": "738298958005-bncbkm66q2l9cdnca5j573rdbspqlpmt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsGKZwNG48YMyL6x-wMlI6R8l3nhx6U_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738298958005-bncbkm66q2l9cdnca5j573rdbspqlpmt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

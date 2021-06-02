@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:rentz/screens/Components/pass_login.dart';
 import 'package:rentz/screens/Components/profile.dart';
 import 'package:rentz/screens/signup_screen.dart';
+import 'package:rentz/utils/google_cred.dart';
 import '../../constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rentz/utils/urls.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'email_field.dart';
+import '../../utils/google_cred.dart';
+import 'dart:async';
+
+GoogleSignIn _googleSignIn =
+    GoogleSignIn(clientId: GoogleCred.clientID, scopes: ['profile']);
 
 class LoginForm extends StatefulWidget {
   @override
@@ -15,26 +21,52 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
+  // LoginRequest _login;
+  GoogleSignInAccount _currentUser;
+  GoogleSignInAuthentication auth;
 
-Future<void> _handleSignIn() async {
-  try {
-    var response = await _googleSignIn.signIn();
-    print(response);
-  } catch (error) {
-    print(error);
+  @override
+  void initState() {
+    super.initState();
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+      setState(() {
+        _currentUser = account;
+        print(account);
+      });
+    });
+    _googleSignIn.signInSilently();
   }
-}
+
+  Future<void> _signIn() async {
+    try {
+      _currentUser = await _googleSignIn.signIn();
+      print(_currentUser);
+      auth = await _currentUser.authentication;
+      // final response = await http.post(
+      //   Uri.parse("url to googleauth"),
+      //   headers: {"access_token": auth.accessToken},
+      // );
+      // saveInSharedPreferances(response.body);
+
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _signOut() async {
+    _googleSignIn.disconnect();
+  }
+
+  void saveInSharedPreferances(tokens) async {
+    // store them in shared preference
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   void addsignin() async {
     try {
       final response = await http.get(Uri.parse(Urls.signin));
+      await saveInSharedPreferances(response.body);
     } catch (error) {
       print(error);
     }
@@ -91,8 +123,8 @@ Future<void> _handleSignIn() async {
               TextButton(
                 onPressed: () => {
                   Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignupScreen()),
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupScreen()),
                   ),
                 },
                 child: const Text(
@@ -109,19 +141,18 @@ Future<void> _handleSignIn() async {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: GestureDetector(
-                onTap: _handleSignIn,
-                  child: Icon(
-                    FontAwesomeIcons.googlePlusG,
-                    color: Colors.red,
-                    size: 24,
-                  ),
+                onTap: _signIn,
+                child: Icon(
+                  FontAwesomeIcons.googlePlusG,
+                  color: Colors.red,
+                  size: 24,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: IconButton(
-                onPressed: () => {
-                },
+                onPressed: () => {_signOut()},
                 icon: Icon(
                   FontAwesomeIcons.facebook,
                   color: Colors.blue,
