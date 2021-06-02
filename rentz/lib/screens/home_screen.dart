@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/widgets/search_bar.dart';
 import '../constant.dart';
 import '../screens/Components/ReusableCard.dart';
 import '../screens/Components/IconContent.dart';
 import '../screens/Components/appbar.dart';
 import '../screens/Components/drawer.dart';
-import '../screens/Components/searchBar.dart';
+import '../widgets/search_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends StatefulWidget {

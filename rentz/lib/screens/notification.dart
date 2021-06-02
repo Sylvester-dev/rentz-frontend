@@ -59,7 +59,7 @@ class _NotiState extends State<Noti> {
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding:
-                const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+                const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
             child: FlatButton(
               onPressed: ()=> {},
                           child: Container(
@@ -102,10 +102,11 @@ class _NotiState extends State<Noti> {
                           ),
                         ),
                         Positioned(
-                          top: 25,
+                          top: 9,
                           right: 10,
                           child: IconButton(
               icon: Icon(Icons.close),
+              color: Theme.of(context).primaryColor,
               onPressed: () => {},
                           ),
                         )
