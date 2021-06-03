@@ -52,12 +52,11 @@ class _HomeState extends State<Home> {
           ListView(
             children: [
               Container(
-              width: double.infinity,
-              height:80,
-            ),
+                width: double.infinity,
+                height: 80,
+              ),
               Row(
                 children: <Widget>[
-                  
                   Expanded(
                     child: ReusableCard(
                       colour: Colors.white,
@@ -183,7 +182,9 @@ class _HomeState extends State<Home> {
                                           // alignment: Alignment.center,
                                           child: Text(
                                             "4.0⭐",
-                                            style: TextStyle(color: Theme.of(context).primaryColor),
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .primaryColor),
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 1,
                                           ),
@@ -195,7 +196,8 @@ class _HomeState extends State<Home> {
                                         Text(
                                           '\$30',
                                           style: TextStyle(
-                                            color: Theme.of(context).primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontSize: 22.0,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -212,7 +214,8 @@ class _HomeState extends State<Home> {
                                           width: 50,
                                           height: 50,
                                           decoration: BoxDecoration(
-                                            color: Theme.of(context).primaryColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             borderRadius:
                                                 BorderRadius.circular(50.0),
                                           ),
@@ -389,11 +392,13 @@ class _HomeState extends State<Home> {
                   fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                    borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor, width: 2),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 2),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor, width: 2),
                   ),
                 ),
               ),
@@ -420,76 +425,87 @@ class _HomeState extends State<Home> {
                     "My Profile",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  trailing: Icon(Icons.arrow_right_alt, color: Theme.of(context).primaryColor),
+                  trailing: Icon(Icons.arrow_right_alt,
+                      color: Theme.of(context).primaryColor),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.home, color: Theme.of(context).primaryColor),
+                  leading:
+                      Icon(Icons.home, color: Theme.of(context).primaryColor),
                   title: Text("Home"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.payment, color: Theme.of(context).primaryColor),
+                  leading: Icon(Icons.payment,
+                      color: Theme.of(context).primaryColor),
                   title: Text("Payments"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.touch_app, color: Theme.of(context).primaryColor),
+                  leading: Icon(Icons.touch_app,
+                      color: Theme.of(context).primaryColor),
                   title: Text("Bookings"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.stars, color: Theme.of(context).primaryColor),
+                  leading:
+                      Icon(Icons.stars, color: Theme.of(context).primaryColor),
                   title: Text("Favourite"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.today, color: Theme.of(context).primaryColor),
+                  leading:
+                      Icon(Icons.today, color: Theme.of(context).primaryColor),
                   title: Text("Calender"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.card_giftcard, color: Theme.of(context).primaryColor),
+                  leading: Icon(Icons.card_giftcard,
+                      color: Theme.of(context).primaryColor),
                   title: Text("Refer & Earn"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.settings, color: Theme.of(context).primaryColor),
+                  leading: Icon(Icons.settings,
+                      color: Theme.of(context).primaryColor),
                   title: Text("Support"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.contacts, color: Theme.of(context).primaryColor),
+                  leading: Icon(Icons.contacts,
+                      color: Theme.of(context).primaryColor),
                   title: Text("Contact us"),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.power_settings_new, color: Theme.of(context).primaryColor),
+                  leading: Icon(Icons.power_settings_new,
+                      color: Theme.of(context).primaryColor),
                   title: Text("LogOut"),
-                  onTap: () {
-                    Navigator.pop(context);
+                  onTap: () async {
+                    Navigator.of(context).pushNamed('/');
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.info, color: Theme.of(context).primaryColor),
+                  leading:
+                      Icon(Icons.info, color: Theme.of(context).primaryColor),
                   title: Text("About"),
                   trailing: Text(
                     "1.0.0",

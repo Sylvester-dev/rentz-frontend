@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:rentz/screens/Components/pass_login.dart';
 import 'package:rentz/screens/Components/profile.dart';
 import 'package:rentz/screens/signup_screen.dart';
-import 'package:rentz/utils/google_cred.dart';
+// import 'package:rentz/utils/google_cred.dart';
 import '../../constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rentz/utils/urls.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'email_field.dart';
-import '../../utils/google_cred.dart';
+// import '../../utils/google_cred.dart';
 import 'dart:async';
+import '../../utils/google_auth.dart';
 
-GoogleSignIn _googleSignIn =
-    GoogleSignIn(clientId: GoogleCred.clientID, scopes: ['profile']);
+// GoogleSignIn _googleSignIn =
+//     GoogleSignIn(clientId: GoogleCred.clientID, scopes: ['profile']);
+
+Auth googleAuth = new Auth();
 
 class LoginForm extends StatefulWidget {
   @override
@@ -28,20 +31,33 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+    googleAuth.googleSignIn.onCurrentUserChanged
+        .listen((GoogleSignInAccount account) {
       setState(() {
         _currentUser = account;
         print(account);
       });
     });
-    _googleSignIn.signInSilently();
+    googleAuth.googleSignIn.signInSilently().then((value) {
+      if (_currentUser != null) {
+        print("hee");
+        Navigator.of(context).pushNamed('/home');
+      }
+    });
   }
 
   Future<void> _signIn() async {
     try {
-      _currentUser = await _googleSignIn.signIn();
-      print(_currentUser);
-      auth = await _currentUser.authentication;
+      await googleAuth.googleSignIn.signOut();
+      _currentUser = await googleAuth.googleSignIn.signIn();
+      if (_currentUser == null) {
+        print("singin failed.");
+      } else {
+        print(_currentUser);
+        auth = await _currentUser.authentication;
+        Navigator.of(context).pushNamed('/home');
+      }
+
       // final response = await http.post(
       //   Uri.parse("url to googleauth"),
       //   headers: {"access_token": auth.accessToken},
@@ -54,7 +70,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Future<void> _signOut() async {
-    _googleSignIn.disconnect();
+    await googleAuth.googleSignIn.disconnect();
   }
 
   void saveInSharedPreferances(tokens) async {
