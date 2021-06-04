@@ -31,11 +31,17 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        children: [
-          Text('Welcome', style: TextStyle(fontSize: 30)),
-          CircularProgressIndicator(),
-        ],
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Center(
+          child: Column(
+            children: [
+              Text('Welcome', style: TextStyle(fontSize: 30)),
+              CircularProgressIndicator(),
+            ],
+          ),
+        ),
       ),
     );
   }
