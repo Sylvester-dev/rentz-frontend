@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/screens/Components/appbar.dart';
+import 'package:rentz/screens/Components/drawer.dart';
+import 'package:rentz/screens/add_screen.dart';
 import 'package:rentz/screens/booking_screen.dart';
 import 'package:rentz/screens/login_screen.dart';
+import 'package:rentz/screens/profile_screen.dart';
 import 'package:rentz/screens/refer_earn.dart';
 import 'package:rentz/screens/home_screen.dart';
 import 'package:rentz/screens/serviceScreen.dart';
@@ -40,14 +44,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (ctx) => Splash(),
+        '/add': (ctx) => MyAdd(),
         '/home': (ctx) => MyHomePage(),
         // '/profile': (ctx) => Profile(),
         '/login': (ctx) => LoginScreen(),
         '/signup': (ctx) => SignupScreen(),
+        '/search': (ctx) => Search(),
         // '/favorite': (ctx) => Favo(),
         '/refer': (ctx) => ReferEarn(),
         '/noti': (ctx) => Noti(),
-        '/bookings': (ctx) => Booking(),
+        '/booking': (ctx) => Booking(),
         // '/products': (ctx) => ProductDetailsScreen(),
         '/products/flat': (ctx) => ProductDetailsScreen(),
         '/products/mapview': (ctx) => MapScreen(),
@@ -86,16 +92,23 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      appBar: appbar(context),
       body: TabBarView(
         children: <Widget>[
           Home(),
           Service(),
-          Home(),
-          Search(),
+          Booking(),
+          ProfileScreen(),
         ],
         // If you want to disable swiping in tab the use below code
         physics: NeverScrollableScrollPhysics(),
         controller: _tabController,
+      ),
+      drawer: SafeArea(
+        child: Drawer(
+          child: SideDrawer(),
+        ),
       ),
       bottomNavigationBar: BottomNavBar(tabController: _tabController),
     );

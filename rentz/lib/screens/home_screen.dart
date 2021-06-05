@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rentz/widgets/search_bar.dart';
+import 'package:rentz/screens/Components/searchBar.dart';
 import '../constant.dart';
 import '../screens/Components/ReusableCardHome.dart';
 import '../screens/Components/IconContent.dart';
-import '../screens/Components/appbar.dart';
-import '../screens/Components/drawer.dart';
-import '../widgets/search_bar.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends StatefulWidget {
@@ -20,15 +18,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: appbar,
       body: Stack(
         children: [
           ListView(
             children: [
-              Container(
-                width: double.infinity,
-                height: 80,
-              ),
+            
               Row(
                 children: <Widget>[
                   Expanded(
@@ -108,8 +102,7 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Padding(
-                          padding:
-                              EdgeInsets.fromLTRB(140.0, 20.0, 20.0, 20.0),
+                          padding: EdgeInsets.fromLTRB(140.0, 20.0, 20.0, 20.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,8 +161,7 @@ class _HomeState extends State<Home> {
                                       Text(
                                         '\$30',
                                         style: TextStyle(
-                                          color:
-                                              Theme.of(context).primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                           fontSize: 22.0,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -186,8 +178,7 @@ class _HomeState extends State<Home> {
                                         width: 40,
                                         height: 40,
                                         decoration: BoxDecoration(
-                                          color:
-                                              Theme.of(context).primaryColor,
+                                          color: Theme.of(context).primaryColor,
                                           borderRadius:
                                               BorderRadius.circular(50.0),
                                         ),
@@ -231,16 +222,7 @@ class _HomeState extends State<Home> {
               ),
             ],
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: SearchBar(),
-          )
         ],
-      ),
-      drawer: SafeArea(
-        child: Drawer(
-          child: SideDrawer(),
-        ),
       ),
     );
   }

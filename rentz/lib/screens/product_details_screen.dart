@@ -12,32 +12,19 @@ class ProductDetailsScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       backgroundColor: Color(0xffEEEEEE),
       appBar: AppBar(
-        brightness: Brightness.dark,
         elevation: 0,
         backgroundColor: Colors.transparent,
+        leadingWidth: 30,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(Icons.sort),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
+              icon: const Icon(Icons.arrow_back_sharp),
+              color: Color(0xff50C2C9),
+              onPressed: () => Navigator.of(context).pop(),
             );
           },
         ),
-        actions: [
-          Container(
-            margin: EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              child: Icon(
-                Icons.near_me,
-                color: Colors.white,
-                size: 30,
-              ),
-              onTap: () {},
-            ),
-          )
-        ],
+    
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,

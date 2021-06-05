@@ -1,12 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SF {
-  addStringToSF(key, val) async {
+class SP {
+  addStringToSP(key, val) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, val);
   }
 
-  getStringValuesSF(key) async {
+  getStringValuesSP(key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String value = prefs.getString(key);
     return value;

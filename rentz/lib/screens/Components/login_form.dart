@@ -14,7 +14,7 @@ import '../../utils/google_auth.dart';
 import '../../utils/shared_preferances.dart';
 
 Auth googleAuth = new Auth();
-SF store = new SF();
+SP store = new SP();
 
 class LoginForm extends StatefulWidget {
   @override
@@ -49,16 +49,15 @@ class _LoginFormState extends State<LoginForm> {
       if (_currentUser == null) {
         print("singin failed.");
       } else {
-        print(_currentUser);
+        Navigator.of(context).pushNamed('/home');
         auth = await _currentUser.authentication;
         final response = await http.post(
-          Uri.parse("http://192.168.1.4:4000/auth//login/google/"),
+          Uri.parse("http://192.168.1.4:4000/auth/login/google/"),
           headers: {"access_token": auth.accessToken},
         );
         if (response.statusCode == 200) {
           Map tokens = json.decode(response.body);
           await saveInSharedPreferances(tokens);
-          Navigator.of(context).pushNamed('/home');
         } else {
           await googleAuth.googleSignIn.signOut();
         }
@@ -75,10 +74,10 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> saveInSharedPreferances(Map tokens) async {
     String key;
     key = "accessToken";
-    await store.addStringToSF(key, tokens[key]);
+    await store.addStringToSP(key, tokens[key]);
     key = "refreshToken";
-    await store.addStringToSF(key, tokens[key]);
-    String val = await store.getStringValuesSF(key);
+    await store.addStringToSP(key, tokens[key]);
+    String val = await store.getStringValuesSP(key);
     print(val);
     // store them in shared preference
   }

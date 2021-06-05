@@ -14,9 +14,10 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
+      padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
       child: Material(
-        elevation: 10,
+        clipBehavior: Clip.hardEdge,
+        elevation: 5,
         borderRadius: BorderRadius.circular(20.0),
         color: Theme.of(context).primaryColor,
         child: Container(
@@ -29,28 +30,28 @@ class BottomNavBar extends StatelessWidget {
             tabs: <Widget>[
               Tab(
                 icon: Icon(
-                  Icons.grass,
+                  Icons.home,
                   size: 24.0,
                 ),
                 // text: 'Home',
               ),
               Tab(
                 icon: Icon(
-                  Icons.build,
+                  Icons.category_outlined,
                   size: 24.0,
                 ),
                 // text: 'Department',
               ),
               Tab(
                 icon: Icon(
-                  Icons.hail,
+                  Icons.card_travel_outlined,
                   size: 24.0,
                 ),
                 // text: 'Cart',
               ),
               Tab(
                 icon: Icon(
-                  Icons.admin_panel_settings,
+                  Icons.account_circle,
                   size: 24.0,
                 ),
                 // text: 'Cart',

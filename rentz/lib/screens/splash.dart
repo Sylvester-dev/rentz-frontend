@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rentz/utils/google_auth.dart';
-import 'package:rentz/utils/google_cred.dart';
 
 enum AuthStatus { notSingIn, signedIn }
 
@@ -19,7 +17,7 @@ class _SplashState extends State<Splash> {
   }
 
   void checksignInstatus() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
     bool isSignedIn = await googleAuth.googleSignIn.isSignedIn();
     if (isSignedIn)
       Navigator.of(context).pushNamed('/home');
@@ -30,16 +28,18 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
+    return Scaffold(
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      body: Container(
         height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.white,
         child: Center(
-          child: Column(
-            children: [
-              Text('Welcome', style: TextStyle(fontSize: 30)),
-              CircularProgressIndicator(),
-            ],
+          child: Image.asset(
+            'assets/icons/icon.png',
+            height: 150,
+            width: 150,
           ),
         ),
       ),

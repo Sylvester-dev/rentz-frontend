@@ -11,7 +11,7 @@ class Service extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: appbar,
+      // appBar: appbar(context),
       body: GridView.count(
         crossAxisCount: 3,
         crossAxisSpacing: 2.0,
@@ -24,11 +24,11 @@ class Service extends StatelessWidget {
           );
         }),
       ),
-      drawer: SafeArea(
-        child: Drawer(
-          child: SideDrawer(),
-        ),
-      ),
+      // drawer: SafeArea(
+      //   child: Drawer(
+      //     child: SideDrawer(),
+      //   ),
+      // ),
     );
   }
 }
