@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/utils/google_auth.dart';
+import '../../utils/shared_preferances.dart';
 
 class SideDrawer extends StatefulWidget {
   @override
@@ -6,12 +8,20 @@ class SideDrawer extends StatefulWidget {
 }
 
 class _SideDrawerState extends State<SideDrawer> {
+  Auth googleAuth = Auth();
+  SP store = SP();
+  void handleLogOut() async {
+    await store.removeValues("accessToken");
+    await store.removeValues("refreshToken");
+    await googleAuth.googleSignIn.signOut();
+    Navigator.of(context).pushNamed("/login");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
       child: ListView(
-        // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
           ListTile(
@@ -27,77 +37,56 @@ class _SideDrawerState extends State<SideDrawer> {
             ),
             trailing: Icon(Icons.arrow_right_alt,
                 color: Theme.of(context).primaryColor),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
-            leading: Icon(Icons.home, color: Theme.of(context).primaryColor),
+            leading: Icon(Icons.home_outlined,
+                color: Theme.of(context).primaryColor),
             title: Text("Home"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
-            leading: Icon(Icons.payment, color: Theme.of(context).primaryColor),
-            title: Text("Payments"),
+            leading: Icon(Icons.add_business_outlined,
+                color: Theme.of(context).primaryColor),
+            title: Text("My Ads"),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).pushNamed('/add');
             },
           ),
           ListTile(
             leading:
                 Icon(Icons.touch_app, color: Theme.of(context).primaryColor),
             title: Text("Bookings"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
             leading: Icon(Icons.stars, color: Theme.of(context).primaryColor),
             title: Text("Favourite"),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.today, color: Theme.of(context).primaryColor),
-            title: Text("Calender"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
             leading: Icon(Icons.card_giftcard,
                 color: Theme.of(context).primaryColor),
             title: Text("Refer & Earn"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
             leading:
                 Icon(Icons.settings, color: Theme.of(context).primaryColor),
             title: Text("Support"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
             leading:
                 Icon(Icons.contacts, color: Theme.of(context).primaryColor),
             title: Text("Contact us"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
           ListTile(
             leading: Icon(Icons.power_settings_new,
                 color: Theme.of(context).primaryColor),
             title: Text("LogOut"),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: handleLogOut,
           ),
           ListTile(
             leading: Icon(Icons.info, color: Theme.of(context).primaryColor),
@@ -106,9 +95,7 @@ class _SideDrawerState extends State<SideDrawer> {
               "1.0.0",
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: () => Navigator.of(context).popAndPushNamed('/booking'),
           ),
         ],
       ),

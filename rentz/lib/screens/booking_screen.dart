@@ -13,17 +13,17 @@ class _BookingState extends State<Booking> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Center(
-            child: Text(
-              'Your Bookings',
-              style: TextStyle(
-                  fontSize: 18,
-                  color: kprimarytheme,
-                  fontWeight: FontWeight.bold),
-            ),
-          )),
+      // appBar: AppBar(
+      //     backgroundColor: Colors.white,
+      //     title: Center(
+      //       child: Text(
+      //         'Your Bookings',
+      //         style: TextStyle(
+      //             fontSize: 18,
+      //             color: kprimarytheme,
+      //             fontWeight: FontWeight.bold),
+      //       ),
+      //     )),
       body: ListView.builder(
         itemCount: notify.length,
         itemBuilder: (BuildContext context, int index) {

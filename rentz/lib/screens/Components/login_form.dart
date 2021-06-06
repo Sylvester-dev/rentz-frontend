@@ -8,6 +8,13 @@ import 'package:rentz/utils/urls.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'email_field.dart';
+import 'dart:async';
+import 'dart:convert';
+import '../../utils/google_auth.dart';
+import '../../utils/shared_preferances.dart';
+
+Auth googleAuth = new Auth();
+SP store = new SP();
 
 class LoginForm extends StatefulWidget {
   @override
@@ -15,26 +22,74 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: [
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
+  GoogleSignInAccount _currentUser;
+  GoogleSignInAuthentication auth;
 
-Future<void> _handleSignIn() async {
-  try {
-    var response = await _googleSignIn.signIn();
-    print(response);
-  } catch (error) {
-    print(error);
+  @override
+  void initState() {
+    super.initState();
+    googleAuth.googleSignIn.onCurrentUserChanged
+        .listen((GoogleSignInAccount account) {
+      setState(() {
+        _currentUser = account;
+      });
+    });
+    googleAuth.googleSignIn.signInSilently().then((value) {
+      if (_currentUser != null) {
+        print("here");
+        Navigator.of(context).pushNamed('/home');
+      }
+    });
   }
-}
+
+  Future<void> _signIn() async {
+    try {
+      await googleAuth.googleSignIn.signOut();
+      _currentUser = await googleAuth.googleSignIn.signIn();
+      if (_currentUser == null) {
+        print("singin failed.");
+      } else {
+        Navigator.of(context).pushNamed('/home');
+        auth = await _currentUser.authentication;
+        final response = await http.post(
+          Uri.parse("http://192.168.1.4:4000/auth/login/google/"),
+          headers: {"access_token": auth.accessToken},
+        );
+        if (response.statusCode == 200) {
+          Map tokens = json.decode(response.body);
+          await saveInSharedPreferances(tokens);
+        } else {
+          await googleAuth.googleSignIn.signOut();
+        }
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _signOut() async {
+    await googleAuth.googleSignIn.disconnect();
+  }
+
+  Future<void> saveInSharedPreferances(Map tokens) async {
+    String key;
+    key = "accessToken";
+    await store.addStringToSP(key, tokens[key]);
+    key = "refreshToken";
+    await store.addStringToSP(key, tokens[key]);
+    String val = await store.getStringValuesSP(key);
+    print(val);
+    // store them in shared preference
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   void addsignin() async {
     try {
       final response = await http.get(Uri.parse(Urls.signin));
+      Map tokens = json.decode(response.body);
+      await saveInSharedPreferances(tokens);
+      Navigator.of(context).pushNamed('/home');
     } catch (error) {
       print(error);
     }
@@ -91,8 +146,8 @@ Future<void> _handleSignIn() async {
               TextButton(
                 onPressed: () => {
                   Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SignupScreen()),
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupScreen()),
                   ),
                 },
                 child: const Text(
@@ -109,19 +164,18 @@ Future<void> _handleSignIn() async {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: GestureDetector(
-                onTap: _handleSignIn,
-                  child: Icon(
-                    FontAwesomeIcons.googlePlusG,
-                    color: Colors.red,
-                    size: 24,
-                  ),
+                onTap: _signIn,
+                child: Icon(
+                  FontAwesomeIcons.googlePlusG,
+                  color: Colors.red,
+                  size: 24,
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: IconButton(
-                onPressed: () => {
-                },
+                onPressed: () => {_signOut()},
                 icon: Icon(
                   FontAwesomeIcons.facebook,
                   color: Colors.blue,

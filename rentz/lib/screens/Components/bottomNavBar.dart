@@ -1,54 +1,57 @@
 import 'package:flutter/material.dart';
 import '../../constant.dart';
+
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
     Key key,
     @required TabController tabController,
-  }) : _tabController = tabController, super(key: key);
+  })  : _tabController = tabController,
+        super(key: key);
 
   final TabController _tabController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kbackground,
-      padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 20.0),
+      color: Colors.transparent,
+      padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
       child: Material(
-        elevation: 10,
+        clipBehavior: Clip.hardEdge,
+        elevation: 5,
         borderRadius: BorderRadius.circular(20.0),
-        color: Colors.black,
+        color: Theme.of(context).primaryColor,
         child: Container(
           height: 70.0,
           width: double.infinity,
           // color: Colors.black26,
           child: TabBar(
             labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey,
+            unselectedLabelColor: Colors.white,
             tabs: <Widget>[
               Tab(
                 icon: Icon(
-                  Icons.grass,
+                  Icons.home,
                   size: 24.0,
                 ),
                 // text: 'Home',
               ),
               Tab(
                 icon: Icon(
-                  Icons.build,
+                  Icons.category_outlined,
                   size: 24.0,
                 ),
                 // text: 'Department',
               ),
               Tab(
                 icon: Icon(
-                  Icons.hail,
+                  Icons.card_travel_outlined,
                   size: 24.0,
                 ),
                 // text: 'Cart',
               ),
               Tab(
                 icon: Icon(
-                  Icons.admin_panel_settings,
+                  Icons.account_circle,
                   size: 24.0,
                 ),
                 // text: 'Cart',

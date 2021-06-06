@@ -59,6 +59,7 @@ flutter:
     - assets/icons/circle-shape.svg
     - assets/images/bus.jpg
     - assets/icons/refer.svg
+    - assets/icons/icon.png
     - assets/images/frame.jpg
   #   - images/a_dot_ham.jpeg
 

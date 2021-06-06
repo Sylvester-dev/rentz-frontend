@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:rentz/screens/search.dart';
 import 'package:rentz/widgets/product_tile.dart';
-import 'package:rentz/widgets/search_bar.dart';
 import 'package:rentz/utils/map_controller.dart';
 import '../widgets/location_input.dart';
 import 'package:latlong/latlong.dart';
@@ -14,6 +14,11 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   double lat = 23.4916248, long = 80.34373889999999;
   bool isSelect = false;
 
@@ -73,25 +78,26 @@ class _MapScreenState extends State<MapScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: Color(0xffEEEEEE),
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        elevation: 1,
+        backgroundColor: Color(0xffEEEEEE),
+        leadingWidth: 30,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
-              icon: const Icon(Icons.sort),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
+              icon: const Icon(Icons.arrow_back_sharp),
+              color: Color(0xff50C2C9),
+              onPressed: () => Navigator.of(context).pop(),
             );
           },
         ),
+        title: SearchAppBar(),
         actions: [
           Container(
             margin: EdgeInsets.only(right: 20),
             child: GestureDetector(
               child: Icon(
                 Icons.gps_fixed,
-                color: Colors.black87,
+                color: Colors.grey.shade800,
                 size: 30,
               ),
               onTap: () {
@@ -107,10 +113,6 @@ class _MapScreenState extends State<MapScreen> {
             SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
               child: LocationInput(DUMMY_FLATS, itemScrollController),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: AppBar().preferredSize.height + 15),
-              child: SearchBar(),
             ),
             Positioned(
               bottom: 10,

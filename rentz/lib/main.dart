@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/screens/Components/appbar.dart';
+import 'package:rentz/screens/Components/drawer.dart';
+import 'package:rentz/screens/add_screen.dart';
 import 'package:rentz/screens/booking_screen.dart';
 import 'package:rentz/screens/login_screen.dart';
+import 'package:rentz/screens/profile_screen.dart';
 import 'package:rentz/screens/refer_earn.dart';
 import 'package:rentz/screens/home_screen.dart';
 import 'package:rentz/screens/serviceScreen.dart';
@@ -9,6 +13,7 @@ import 'screens/search_screen.dart';
 import 'package:rentz/screens/map_screen.dart';
 import 'package:rentz/screens/notification.dart';
 import 'package:rentz/screens/refer_earn.dart';
+import 'package:rentz/screens/splash.dart';
 import 'package:rentz/widgets/product_detail.dart';
 import './screens/product_details_screen.dart';
 import 'package:flutter/services.dart';
@@ -31,21 +36,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      // home: MyHomePage(),
       theme: ThemeData(
         primaryColor: Color(0xff50C2C9),
         accentColor: Color(0xffEEEEEE),
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        // '/': (ctx) => Home(),
+        '/': (ctx) => Splash(),
+        '/add': (ctx) => MyAdd(),
+        '/home': (ctx) => MyHomePage(),
         // '/profile': (ctx) => Profile(),
         '/login': (ctx) => LoginScreen(),
         '/signup': (ctx) => SignupScreen(),
+        '/search': (ctx) => Search(),
         // '/favorite': (ctx) => Favo(),
         '/refer': (ctx) => ReferEarn(),
         '/noti': (ctx) => Noti(),
-        '/bookings': (ctx) => Booking(),
+        '/booking': (ctx) => Booking(),
         // '/products': (ctx) => ProductDetailsScreen(),
         '/products/flat': (ctx) => ProductDetailsScreen(),
         '/products/mapview': (ctx) => MapScreen(),
@@ -84,16 +92,23 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      appBar: appbar(context),
       body: TabBarView(
         children: <Widget>[
           Home(),
           Service(),
-          Home(),
-          Search(),
+          Booking(),
+          ProfileScreen(),
         ],
         // If you want to disable swiping in tab the use below code
         physics: NeverScrollableScrollPhysics(),
         controller: _tabController,
+      ),
+      drawer: SafeArea(
+        child: Drawer(
+          child: SideDrawer(),
+        ),
       ),
       bottomNavigationBar: BottomNavBar(tabController: _tabController),
     );
