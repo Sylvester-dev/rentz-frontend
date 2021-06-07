@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rentz/screens/Components/new_adForm.dart';
 
 class NewAd extends StatelessWidget {
   List<int> items = [0, 1, 2, 3, 4];
@@ -35,14 +36,23 @@ class NewAd extends StatelessWidget {
                 child: IntrinsicHeight(
                   child: Row(
                     children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2 - 8,
-                        height: 100,
-                        child: Center(
-                          child: Text(
-                            "Flat",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AdForm()),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2 - 8,
+                          height: 100,
+                          child: Center(
+                            child: Text(
+                              "Flat",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 18),
+                            ),
                           ),
                         ),
                       ),

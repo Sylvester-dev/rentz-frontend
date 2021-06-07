@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rentz/screens/Components/appbar.dart';
 import 'package:rentz/screens/Components/drawer.dart';
+import 'package:rentz/screens/add_form.dart';
 import 'package:rentz/screens/add_screen.dart';
 import 'package:rentz/screens/booking_screen.dart';
+import 'package:rentz/screens/image_picker.dart';
 import 'package:rentz/screens/login_screen.dart';
 import 'package:rentz/screens/profile_screen.dart';
 import 'package:rentz/screens/refer_earn.dart';
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (ctx) => Splash(),
+        '/': (ctx) => MyHomePage(),
         '/add': (ctx) => MyAdd(),
         '/home': (ctx) => MyHomePage(),
         // '/profile': (ctx) => Profile(),
@@ -99,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage>
           Home(),
           Service(),
           Booking(),
-          ProfileScreen(),
+          MyAdd(),
         ],
         // If you want to disable swiping in tab the use below code
         physics: NeverScrollableScrollPhysics(),
