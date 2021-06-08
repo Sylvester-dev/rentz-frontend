@@ -29,47 +29,36 @@ class NewAd extends StatelessWidget {
           ),
           Column(
             children: [
-              GestureDetector(
-                onTap: () {
-                  print("henlo");
-                },
-                child: IntrinsicHeight(
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AdForm()),
-                          );
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2 - 8,
-                          height: 100,
-                          child: Center(
-                            child: Text(
-                              "Flat",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                      VerticalDivider(),
-                      Container(
+              IntrinsicHeight(
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: () => Navigator.pushNamed(context,'/addform'),
+                      child: Container(
                         width: MediaQuery.of(context).size.width / 2 - 8,
                         height: 100,
                         child: Center(
                           child: Text(
-                            "Marridge",
+                            "Flat",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 18),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    VerticalDivider(),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 2 - 8,
+                      height: 100,
+                      child: Center(
+                        child: Text(
+                          "Marridge",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Divider(),

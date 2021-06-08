@@ -288,7 +288,7 @@ class _AdFormState extends State<AdForm> {
               ),
               Center(
                 child: Container(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 60.0),
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       onPrimary: Colors.white,

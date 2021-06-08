@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget {
         // '/products': (ctx) => ProductDetailsScreen(),
         '/products/flat': (ctx) => ProductDetailsScreen(),
         '/products/mapview': (ctx) => MapScreen(),
+        '/addform':(ctx) => AddForm(),
         // '/product/:id': (ctx) => Home(),
         // '/add': (ctx) => Home(),
         // '/add/:id': (ctx) => Home(),
@@ -101,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage>
           Home(),
           Service(),
           Booking(),
-          MyAdd(),
+          ProfileScreen(),
         ],
         // If you want to disable swiping in tab the use below code
         physics: NeverScrollableScrollPhysics(),
