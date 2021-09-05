@@ -1,1 +1,14 @@
-A glimpse of our app - https://docs.google.com/presentation/d/1f2sDtDHG6xOfyIDdPys724lERtd1yzp4L64fEDCQmjQ/edit#slide=id.ge1d9d9e03d_0_17
+# Rentz
+An App built on **Flutter and Node.js** to let you search nearby flats, hostels, cars, bikes and other things available for renting.
+ ## Images of the App:
+   * ![key.js](./rent1.png)
+   * ![key.js](./rent2.png)
+   * ![key.js](./rent4.png)
+   * ![key.js](./rent5.png)
+   * ![key.js](./rent6.png)
+   * ![key.js](./rent7.png)
+   * ![key.js](./rent3.png)
+   * ![key.js](./rent8.png)
+   * ![key.js](./rent9.png)
+
+  
