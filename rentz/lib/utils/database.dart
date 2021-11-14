@@ -33,6 +33,6 @@ class SqlDb {
    }
 }
 
-// string - id 
+// string - id
 // insertion and deletion 
 // query searching

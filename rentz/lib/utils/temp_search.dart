@@ -3,11 +3,12 @@ class TempSearch {
     "car",
     "bike",
     "construction",
-    "marridge",
     "room",
     "flat",
     "hostel"
+    "marridge",
   ];
+
   List<String> search(String query) {
     List<String> filter = [];
     for (int i = 0; i < services.length; i++) {
