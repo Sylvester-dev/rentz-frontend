@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Service {  
   const Service({this.label, this.icon,this.colour,this.onPress});  
-  final String label;  
   final IconData icon; 
+  final String label;  
   final Color colour;
   final Function onPress;
 }  
