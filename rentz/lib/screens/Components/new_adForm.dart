@@ -11,10 +11,10 @@ class _AdFormState extends State<AdForm> {
   String _chosenType;
   String _chosenBedrooms;
   String _chosenBathrooms;
+  String _chosenBachelor;
   String _chosenFurnishing;
   String _chosenListedBy;
   String _chosenFree;
-  String _chosenBachelor;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
