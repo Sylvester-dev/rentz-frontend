@@ -30,6 +30,7 @@ class _HomeState extends State<Home> {
                       colour: Colors.white,
                       cardChild:
                           IconContent(icon: FontAwesomeIcons.car, label: 'Car'),
+                          
                     ),
                   ),
                   Expanded(

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ReusableCardHome extends StatelessWidget {
-  ReusableCardHome({@required this.colour, this.cardChild,this.onPress});
+  ReusableCardHome({@required this.colour, this.cardChild, this.onPress});
   final Color colour;
   final Widget cardChild;
   final Function onPress;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onPress,
+      onTap: () => Navigator.of(context).pushNamed('/search'),
       child: Container(
         height: 94,
         width: 94,

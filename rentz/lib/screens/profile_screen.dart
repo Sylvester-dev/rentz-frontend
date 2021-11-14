@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Aman Singh',
+                    'Narendra Singh',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -38,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('lcs2019012@iiitl.ac.in'),
+                      child: Text('welcumspammers@gmail.com'),
                     )),
               ],
             ),

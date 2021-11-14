@@ -49,15 +49,16 @@ class _LoginFormState extends State<LoginForm> {
       if (_currentUser == null) {
         print("singin failed.");
       } else {
-        Navigator.of(context).pushNamed('/home');
         auth = await _currentUser.authentication;
         final response = await http.post(
-          Uri.parse("http://192.168.1.4:4000/auth/login/google/"),
+          Uri.parse("https://rentz-store.herokuapp.com/auth/login/google/"),
           headers: {"access_token": auth.accessToken},
         );
         if (response.statusCode == 200) {
           Map tokens = json.decode(response.body);
+          print(response.body);
           await saveInSharedPreferances(tokens);
+          Navigator.of(context).pushNamed('/home');
         } else {
           await googleAuth.googleSignIn.signOut();
         }
@@ -175,7 +176,7 @@ class _LoginFormState extends State<LoginForm> {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: IconButton(
-                onPressed: () => {_signOut()},
+                onPressed: () => {_signIn()},
                 icon: Icon(
                   FontAwesomeIcons.facebook,
                   color: Colors.blue,
