@@ -7,7 +7,7 @@ class Booking extends StatefulWidget {
 }
 
 class _BookingState extends State<Booking> {
-  List<String> notify = ['first', 'second', 'thrid','f','f','f'];
+  List<String> notify = ['first', 'second', 'third','f','f','f'];
 
   @override
   Widget build(BuildContext context) {
