@@ -1,5 +1,5 @@
 # Rentz
-This App is built by **Aman (LCS2019012) , Vineet (LIT2019032), Narendra (LCS2019015) , Subhash(LCS2019016)**. An App built on **Flutter and Node.js** to let you search nearby flats, hostels, cars, bikes and other things available for renting.
+A cross-platform rental app built by **Aman (LCS2019012) , Vineet (LIT2019032), Narendra (LCS2019015) , Subhash(LCS2019016)**. An App built on **Flutter and Node.js** to let you search nearby flats, hostels, cars, bikes and other things available for renting.
  ## Images of the App:
    * ![key.js](./rent1.png)
    * ![key.js](./rent2.png)
